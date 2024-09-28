@@ -62,3 +62,4 @@ COPY build/libs/*.jar scheduler.jar
 
 # 애플리케이션 실행
 ENTRYPOINT ["java", "-jar", "scheduler.jar"]
+
