@@ -33,9 +33,6 @@ RUN mkdir -p ~/.aws && \
     echo "aws_access_key_id=${AWS_ACCESS_KEY_ID}" >> ~/.aws/credentials && \
     echo "aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials
 
-#RUN echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
-#RUN echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
-
 # S3에서 설치 파일 다운로드
 RUN aws s3 cp s3://s3cepcdbucket/google-chrome.deb /tmp/google-chrome.deb
 RUN aws s3 cp s3://s3cepcdbucket/chromedriver-linux64.zip /tmp/chromedriver-linux64.zip
