@@ -64,3 +64,4 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # 애플리케이션 실행
 ENTRYPOINT ["java", "-jar", "scheduler.jar"]
+

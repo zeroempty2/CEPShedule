@@ -1,0 +1,42 @@
+name: CI for Spring Boot
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java-version: [17]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: ${{ matrix.java-version }}
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew build --no-daemon
+
+      - name: Trigger CD workflow
+        if: ${{ success() }}  # 빌드가 성공한 경우에만 실행
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/zeroempty2/CEPShedule/actions/workflows/deploy.yml/dispatches \
+            -d '{"ref": "main"}'
+
+    env:
+      DB_SOURCE_URL: ${{ secrets.DB_SOURCE_URL }}
+      DB_SOURCE_USERNAME: ${{ secrets.DB_SOURCE_USERNAME }}
+      DB_SOURCE_PASSWORD: ${{ secrets.DB_SOURCE_PASSWORD }}
