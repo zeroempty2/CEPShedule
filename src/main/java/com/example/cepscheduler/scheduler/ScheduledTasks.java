@@ -19,7 +19,7 @@ public class ScheduledTasks {
   }
 
   public void callSchedule() {
-    ConvenienceClassification[] arr = {ConvenienceClassification.CU,ConvenienceClassification.GS25,ConvenienceClassification.GS25};
+    ConvenienceClassification[] arr = {ConvenienceClassification.CU,ConvenienceClassification.GS25,ConvenienceClassification.EMART24};
     for(ConvenienceClassification c : arr) schedule.startCrawl(c);
   }
 
