@@ -57,12 +57,12 @@ public class Product extends TimeStamped {
     this.dumImg = dumImg;
     this.eventClassification = eventClassification;
     this.convenienceClassification = convenienceClassification;
-    this.productHash = generateSHA256Hash(productName,eventClassification);
+    this.productHash = generateSHA256Hash(productName,eventClassification,convenienceClassification);
   }
 
-  public String generateSHA256Hash(String productName, String eventClassification) {
+  public String generateSHA256Hash(String productName, String eventClassification, ConvenienceClassification convenienceClassification) {
     try {
-      String input = productName + eventClassification;
+      String input = productName + eventClassification + convenienceClassification;
       MessageDigest digest = MessageDigest.getInstance("SHA-256");
       byte[] encodedhash = digest.digest(input.getBytes(StandardCharsets.UTF_8));
 
@@ -78,5 +78,6 @@ public class Product extends TimeStamped {
       throw new RuntimeException(e);
     }
   }
+
 
 }
