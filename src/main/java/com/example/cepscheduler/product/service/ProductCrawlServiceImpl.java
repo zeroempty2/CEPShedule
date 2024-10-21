@@ -240,7 +240,7 @@ public class ProductCrawlServiceImpl implements ProductCrawlService {
       }
 
       System.out.println("emart24 : "  + "totalPage: " + page +  "  startTime: " + start + "  finishTime: " + LocalDateTime.now());
-
+      Thread.sleep(5000);
       Document document = Jsoup.parse(driver.getPageSource());
       List<Product> productList = parsingEmartElements(document);
       products.addAll(productList);
