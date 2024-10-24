@@ -38,7 +38,6 @@ public class ProductCrawlServiceImpl implements ProductCrawlService {
   private final ProductRepository productRepository;
 
   @Override
-  @Transactional
   public String crawlCuProducts() {
 
     String url = "https://cu.bgfretail.com/event/plus.do";
@@ -112,7 +111,6 @@ public class ProductCrawlServiceImpl implements ProductCrawlService {
   }
 
   @Override
-  @Transactional
   public String crawlGsProducts() {
     String url = "http://gs25.gsretail.com/gscvs/ko/products/event-goods";
 
@@ -185,7 +183,6 @@ public class ProductCrawlServiceImpl implements ProductCrawlService {
   }
 
   @Override
-  @Transactional
   public String crawlEmartProducts() {
     String url = "https://www.emart24.co.kr/goods/event";
 
@@ -259,7 +256,8 @@ public class ProductCrawlServiceImpl implements ProductCrawlService {
     return "Emart24 crawl success";
   }
 
-  private void saveProductsInBatches(List<Product> products, int batchSize) {
+  @Transactional
+  protected void saveProductsInBatches(List<Product> products, int batchSize) {
     for (int i = 0; i < products.size(); i += batchSize) {
       int end = Math.min(i + batchSize, products.size());
       List<Product> batch = products.subList(i, end);
