@@ -223,7 +223,7 @@ public class ProductCrawlServiceImpl implements ProductCrawlService {
           WebElement nextPageLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[2]/div/div/div[2]/div[1]/img")));
           ((JavascriptExecutor) driver).executeScript("arguments[0].click();", nextPageLink);
 
-          Thread.sleep(8000);
+          Thread.sleep(5000);
 
 
 
@@ -237,7 +237,7 @@ public class ProductCrawlServiceImpl implements ProductCrawlService {
       }
 
       System.out.println("emart24 : "  + "totalPage: " + page +  "  startTime: " + start + "  finishTime: " + LocalDateTime.now());
-      Thread.sleep(5000);
+
       Document document = Jsoup.parse(driver.getPageSource());
       List<Product> productList = parsingEmartElements(document);
       products.addAll(productList);
