@@ -12,7 +12,7 @@ on:
 env:
   AWS_REGION: ap-northeast-2
   DOCKER_IMAGE_NAME: 2zeroempty/cepschedule
-  EC2_HOST: ec2-user@52.79.209.72 
+  EC2_HOST: ec2-user@3.34.181.217
   EC2_CONTAINER_NAME: scheduler   
 
 permissions:
