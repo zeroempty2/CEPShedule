@@ -73,7 +73,8 @@ jobs:
       - name: Deploy to EC2
         run: |
           ssh -vvv -o StrictHostKeyChecking=no -i ~/.ssh/ec2_key.pem -p 2200 ec2-user@52.79.209.72 << 'EOF'
-            sudo usermod -aG docker ec2-user
+            sudo usermod -aG docker $USER
+            newgrp docker
             sudo systemctl start docker || echo "Docker is already running."
             docker pull ${{ env.DOCKER_IMAGE_NAME }}:latest
             docker stop ${{ env.EC2_CONTAINER_NAME }} || true
