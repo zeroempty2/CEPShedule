@@ -20,4 +20,19 @@ public class ScheduleImpl implements Schedule{
       case EMART24 -> System.out.println(productCrawlService.crawlEmartProducts());
     }
   }
+
+  @Override
+  public void CuCrawl() {
+    productCrawlService.crawlCuProducts();
+  }
+
+  @Override
+  public void GsCrawl() {
+    productCrawlService.crawlGsProducts();
+  }
+
+  @Override
+  public void EmartCrawl() {
+    productCrawlService.crawlEmartProducts();
+  }
 }
