@@ -22,5 +22,18 @@ public class ScheduledTasks {
     ConvenienceClassification[] arr = {ConvenienceClassification.CU,ConvenienceClassification.EMART24,ConvenienceClassification.GS25};
     for(ConvenienceClassification c : arr) schedule.startCrawl(c);
   }
+  @Scheduled(cron = "0 0 0 * * ?", zone = "Asia/Seoul")
+  public void CuCrawl() {
+    schedule.CuCrawl();
+  }
 
+  @Scheduled(cron = "0 40 0 * * ?", zone = "Asia/Seoul")
+  public void GsCrawl() {
+   schedule.GsCrawl();
+  }
+
+  @Scheduled(cron = "0 20 1 * * ?", zone = "Asia/Seoul")
+  public void EmartCrawl() {
+    schedule.EmartCrawl();
+  }
 }
