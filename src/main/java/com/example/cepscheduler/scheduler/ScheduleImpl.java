@@ -3,6 +3,7 @@ package com.example.cepscheduler.scheduler;
 import com.example.cepscheduler.product.service.interfaces.ProductCrawlService;
 import com.example.cepscheduler.product.service.interfaces.ProductService;
 import com.example.cepscheduler.util.enums.ConvenienceClassification;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -22,17 +23,23 @@ public class ScheduleImpl implements Schedule{
   }
 
   @Override
+  @Transactional
   public void CuCrawl() {
+    productService.deleteAllByConvenienceClassification(ConvenienceClassification.CU);
     productCrawlService.crawlCuProducts();
   }
 
   @Override
+  @Transactional
   public void GsCrawl() {
+    productService.deleteAllByConvenienceClassification(ConvenienceClassification.GS25);
     productCrawlService.crawlGsProducts();
   }
 
   @Override
+  @Transactional
   public void EmartCrawl() {
+    productService.deleteAllByConvenienceClassification(ConvenienceClassification.EMART24);
     productCrawlService.crawlEmartProducts();
   }
 }
