@@ -12,16 +12,7 @@ import org.springframework.stereotype.Component;
 public class ScheduledTasks {
 
   private final Schedule schedule;
-
-  @Scheduled(cron = "0 0 0 * * ?", zone = "Asia/Seoul")
-  public void runApiWithAdministratorRole() {
-    callSchedule();
-  }
-
-  public void callSchedule() {
-    ConvenienceClassification[] arr = {ConvenienceClassification.CU,ConvenienceClassification.EMART24,ConvenienceClassification.GS25};
-    for(ConvenienceClassification c : arr) schedule.startCrawl(c);
-  }
+  
   @Scheduled(cron = "0 0 0 * * ?", zone = "Asia/Seoul")
   public void CuCrawl() {
     schedule.CuCrawl();
