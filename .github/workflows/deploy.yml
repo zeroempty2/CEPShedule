@@ -84,5 +84,5 @@ jobs:
               -e DB_SOURCE_USERNAME=${{ secrets.DB_SOURCE_USERNAME }} \
               -e DB_SOURCE_PASSWORD=${{ secrets.DB_SOURCE_PASSWORD }} \
               ${{ env.DOCKER_IMAGE_NAME }}:latest
-            docker update --restart always scheduler
+            # docker update --restart always scheduler
           EOF
